@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# run_in_job.subr
+# Run a command in a job on the Jankins
+# By J. Stuart McMurray
+# Created 20241116
+# Last Modified 20241117
+
+# run_in_job_with_creds runs its argument as a command in a Jankins job.
+#
+# Arguments:
+# $1    - Username
+# $2    - Password
+# $3... - Job to run
+run_in_job_with_creds() {
+        U=$1
+        P=$2
+        shift 2
+        # Job archive
+        TXTAR="$(cat <<_eof
+-- Makefile --
+main:
+	sh ./run.sh
+-- run.sh --
+$*
+_eof
+)"
+        (curl \
+                --data-urlencode "archive=$TXTAR" \
+                --silent \
+                --user "$U:$P" \
+                http://127.0.0.1 |
+                tail -n +4 |
+                sed '$d') 2>&1
+}
+
+# run_in_job runs its arguments as a command in a Jankins job
+run_in_job() {
+        run_in_job_with_creds \
+                "$(cat default_username)" \
+                "$(cat default_password)" \
+                "$@"
+}
+
+# run_in_priv_job is like run_in_job but uses admin creds.
+run_in_priv_job() {
+        run_in_job_with_creds \
+                "$(cat default_admin_username)" \
+                "$(cat default_admin_password)" \
+                "$@"
+}
+
+# vim: ft=sh

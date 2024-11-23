@@ -1,0 +1,31 @@
+<!doctype html>
+<!--
+        index.html
+        Jankins main (and only) page
+        By J. Stuart McMurray
+        Created 20241102
+        Last Modified 20241102
+-->
+<html>
+<head>
+        <title>Jankins</title>
+</head>
+<body>
+        <h1>Jankins</h1>
+        <p>
+                Please copy/paste a
+                <a href=https://pkg.go.dev/golang.org/x/tools/txtar#pkg-overview>
+                        txtar</a> archive into the box below.
+        </p>
+        <form action=/ method=post>
+                <textarea
+                        name=archive
+                        required=true
+                        style="font-family: monospace;"
+                ></textarea>
+                <input type=submit></input>
+        </form>
+        <p>You may also send the archive via a POST request with the POST
+        variable <code>archive</code>.
+</body>
+</html>

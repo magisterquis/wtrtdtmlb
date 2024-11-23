@@ -1,0 +1,13 @@
+-- Makefile --
+test:
+	prove
+-- t/test.t --
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+use Test::More;
+
+pass "This test works";
+
+done_testing;
