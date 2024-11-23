@@ -9,7 +9,7 @@ HOSTDISKFLAG=/usr/include/005.hostdisk.flag
 # Make sure we have a global config directory, for things shared between source
 # directories, like docker networks.
 GLOBAL=${.CURDIR}/global
-.BEGIN:
+.BEGIN::
 	@mkdir -p ${GLOBAL}
 
 PROVE     = SHMORE=$$(pwd)/src/include.t/shmore.subr\

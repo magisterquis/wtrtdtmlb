@@ -12,6 +12,8 @@ set -e
 cd $(dirname $0)/..
 . t/run_in_job.subr
 
+tap_plan 11
+
 # Initial access flag
 tap_is \
         "$(run_in_job cat /usr/lib/001.inital_access.flag)" \

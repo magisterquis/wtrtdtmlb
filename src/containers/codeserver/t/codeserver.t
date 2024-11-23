@@ -67,7 +67,7 @@ tap_subtest "Clone repos" "subtest" "$0" $LINENO
 
 tap_is \
         "$(GIT sh -c 'git clone --quiet git@codeserver:central_iac.git && '\
-'egrep -hro "[a-z0-9]+://[^:]+:[^@]+@[a-z0-9.]+" central_iac')" \
+'egrep -hro "[a-z0-9]+://[^:]+:[^@]+@[a-z0-9.]+" central_iac | sort -u')" \
         "http://jankins_p:l0ng_p4ssw0rds_4r3_n1c3@passwordstore" \
         "Passwordserver password" \
         "$0" "$LINENO"
@@ -77,7 +77,15 @@ tap_is \
                 git clone --quiet git@codeserver:central_iac.git &&
                 ls central_iac
         ')" \
-        "$(printf "004.repo.flag\nget_creds.subr\n")" \
+                '004.repo.flag
+Makefile
+README.md
+digitalocean
+get_creds.subr
+go.mod
+go.sum
+src
+staticcheck.conf' \
         "IaC Repo Files exist" \
         "$0" "$LINENO"
 

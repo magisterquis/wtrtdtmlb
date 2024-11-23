@@ -2,7 +2,7 @@
 # Makefile things for Docker containers
 # By J. Stuart McMurray
 # Created 20241009
-# Last Modified 20241116
+# Last Modified 20241123
 
 .ifndef HAVE_DOCKER_MK
 HAVE_DOCKER_MK=1
@@ -129,10 +129,10 @@ ${SYSLOGD_PID} .USE
 		--name ${DOCKER_NAME}\
 		--network ${DOCKER_NETWORK}\
 		--quiet\
+		--rm\
 		${DOCKER_NAME} >$@.tmp
 	mv $@.tmp $@
 
-		#--rm\
 # Clean up things we may have made on clean
 clean:: .NOTMAIN ${DOCKER}
 	# Stop Container

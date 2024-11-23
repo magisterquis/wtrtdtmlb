@@ -55,7 +55,7 @@ ${CODESERVERBIN}: *.go go_build
 ${REPOSDIR}/${INFRAREPO}: ${GIT} ${GET_CREDS} 004.repo.flag
 	if [ -d $@.full ]; then rm -r $@.full; fi
 	git clone --quiet https://github.com/magisterquis/wtrtdtmlb.git $@.full
-	find $@.full -name Makefile -delete
+	find $@.full -name Makefile -o -name get_creds.subr.m4 -delete
 	cp ${>:N*/git} $@.full
 	(cd $@.full &&\
 		git add . &&\
